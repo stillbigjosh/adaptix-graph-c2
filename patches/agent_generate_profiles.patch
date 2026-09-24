@@ -1,0 +1,58 @@
+--- a/AdaptixServer/extenders/beacon_agent/pl_main.go
++++ b/AdaptixServer/extenders/beacon_agent/pl_main.go
+@@ -297,6 +297,7 @@ var (
+ 	ObjectDir_smb  = "objects_smb"
+ 	ObjectDir_tcp  = "objects_tcp"
+ 	ObjectDir_dns  = "objects_dns"
++	ObjectDir_graph = "objects_graph"
+ 	ObjectFiles    = [...]string{"Agent", "AgentConfig", "AgentInfo", "ApiLoader", "beacon_functions", "bof_loader", "Boffer", "Commander", "crt", "Crypt", "Downloader", "Encoders", "JobsController", "MainAgent", "MemorySaver", "Packer", "Pivotter", "ProcLoader", "Proxyfire", "std", "utils", "WaitMask"}
+ 	CFlags         = "-c -fno-builtin -fno-unwind-tables -fno-strict-aliasing -fno-ident -fno-stack-protector -fno-exceptions -fno-asynchronous-unwind-tables -fno-strict-overflow -fno-delete-null-pointer-checks -fpermissive -w -masm=intel -fPIC"
+ 	LFlags         = "-Os -s -Wl,-s,--gc-sections -static-libgcc -mwindows"
+@@ -495,6 +496,47 @@ func (p *PluginAgent) GenerateProfiles(profile adaptix.BuildProfile) ([][]byte,
+ 				return nil, err
+ 			}
+
++		case "graph":
++
++			storageType := 0
++			if st, ok := listenerMap["storage_type"].(string); ok && st == "blob" {
++				storageType = 1
++			}
++
++			pollAttempts := 15
++			if pa, ok := listenerMap["poll_attempts"].(float64); ok && pa > 0 {
++				pollAttempts = int(pa)
++			}
++			pollIntervalMs := 3000
++			if pi, ok := listenerMap["poll_interval_ms"].(float64); ok && pi > 0 {
++				pollIntervalMs = int(pi)
++			}
++
++			params = append(params, storageType)
++
++			if storageType == 0 {
++				tenantId, _ := listenerMap["tenant_id"].(string)
++				clientId, _ := listenerMap["client_id"].(string)
++				clientSecret, _ := listenerMap["client_secret"].(string)
++				userId, _ := listenerMap["user_id"].(string)
++				folderPath, _ := listenerMap["folder_path"].(string)
++				params = append(params, tenantId)
++				params = append(params, clientId)
++				params = append(params, clientSecret)
++				params = append(params, userId)
++				params = append(params, folderPath)
++			} else {
++				storageAccount, _ := listenerMap["storage_account"].(string)
++				containerName, _ := listenerMap["container_name"].(string)
++				sasToken, _ := listenerMap["sas_token"].(string)
++				params = append(params, storageAccount)
++				params = append(params, containerName)
++				params = append(params, sasToken)
++			}
++
++			params = append(params, pollAttempts)
++			params = append(params, pollIntervalMs)
++
+ 		default:
+ 			return nil, errors.New("protocol unknown")
+ 		}

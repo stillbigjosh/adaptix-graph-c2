@@ -1,0 +1,40 @@
+--- a/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/AgentConfig.h
++++ b/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/AgentConfig.h
+@@ -64,6 +64,23 @@
+ 	BYTE* user_agent;
+ } ProfileDNS;
+
++#ifndef PROFILE_GRAPH_STRUCT
++#define PROFILE_GRAPH_STRUCT
++typedef struct {
++	ULONG storage_type;
++	BYTE* tenant_id;
++	BYTE* client_id;
++	BYTE* client_secret;
++	BYTE* user_id;
++	BYTE* folder_path;
++	BYTE* storage_account;
++	BYTE* container_name;
++	BYTE* sas_token;
++	ULONG poll_attempts;
++	ULONG poll_interval_ms;
++} ProfileGraph;
++#endif
++
+ #endif
+
+
+@@ -95,10 +112,13 @@
+ #elif defined(BEACON_DNS)
+ 	ProfileDNS profile;
+
++#elif defined(BEACON_GRAPH)
++	ProfileGraph profile;
++
+ #endif
+
+ 	AgentConfig();
+
+ 	static void* operator new(size_t sz);
+ 	static void operator delete(void* p) noexcept;
+ };

@@ -1,0 +1,26 @@
+--- a/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/AgentConfig.cpp
++++ b/AdaptixServer/extenders/beacon_agent/src_beacon/beacon/AgentConfig.cpp
+@@ -98,6 +98,23 @@ AgentConfig::AgentConfig()
+ 	this->profile.burst_jitter  = packer->Unpack32();
+ 	this->profile.dns_mode      = packer->Unpack32();
+ 	this->profile.user_agent    = packer->UnpackBytesCopy(&length);
++
++#elif defined(BEACON_GRAPH)
++	this->listener_type             = packer->Unpack32();
++	this->profile.storage_type      = packer->Unpack32();
++	if (this->profile.storage_type == 0) {
++		this->profile.tenant_id     = packer->UnpackBytesCopy(&length);
++		this->profile.client_id     = packer->UnpackBytesCopy(&length);
++		this->profile.client_secret = packer->UnpackBytesCopy(&length);
++		this->profile.user_id       = packer->UnpackBytesCopy(&length);
++		this->profile.folder_path   = packer->UnpackBytesCopy(&length);
++	} else {
++		this->profile.storage_account = packer->UnpackBytesCopy(&length);
++		this->profile.container_name  = packer->UnpackBytesCopy(&length);
++		this->profile.sas_token       = packer->UnpackBytesCopy(&length);
++	}
++	this->profile.poll_attempts     = packer->Unpack32();
++	this->profile.poll_interval_ms  = packer->Unpack32();
+ #endif
+ 
+ #if defined(BEACON_DNS)
