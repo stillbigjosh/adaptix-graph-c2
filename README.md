@@ -10,6 +10,8 @@ Supports two storage backends:
 
 **For authorized red team and penetration testing use only.**
 
+![Cloud dead-drop C2 topology](topology.svg)
+
 For a full walkthrough with screenshots, see the [deployment guide](https://stillbigjosh.github.io/writeup.html?file=writeups/adaptix-graph-c2.md).
 
 ## Prerequisites
