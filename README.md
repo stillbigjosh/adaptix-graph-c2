@@ -12,7 +12,7 @@ Supports two storage backends:
 
 **For authorized red team and penetration testing use only.**
 
-For a full walkthrough with screenshots, see the [deployment guide](https://stillbigjosh.github.io/writeup.html?file=writeups/adaptix-graph-c2.md).
+For a full walkthrough, see the [deployment guide](https://stillbigjosh.github.io/writeup.html?file=writeups/adaptix-graph-c2.md).
 
 ## Prerequisites
 
@@ -31,12 +31,12 @@ cd adaptix-graph-c2
 
 The script does everything: patches the source, builds the listener plugin, rebuilds the server, compiles beacon objects, and restarts the service.
 
-For LXC containers:
+If Adaptix runs in a container, clone and run the script directly inside it:
 
 ```bash
-tar czf /tmp/adaptix-graph-c2.tar.gz -C /path/to adaptix-graph-c2
-cat /tmp/adaptix-graph-c2.tar.gz | pct exec <id> -- tar xzf - -C /opt/
-pct exec <id> -- bash /opt/adaptix-graph-c2/scripts/install.sh /opt/AdaptixC2
+git clone https://github.com/stillbigjosh/adaptix-graph-c2.git /opt/adaptix-graph-c2
+cd /opt/adaptix-graph-c2
+./scripts/install.sh /opt/AdaptixC2
 ```
 
 ## After Install
