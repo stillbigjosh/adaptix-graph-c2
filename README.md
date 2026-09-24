@@ -19,7 +19,6 @@ For a full walkthrough, see the [deployment guide](https://stillbigjosh.github.i
 - Adaptix C2 v1.2 installed and built
 - Go 1.25.4+ (must match the server binary version)
 - MinGW cross-compilers (`x86_64-w64-mingw32-g++`, `i686-w64-mingw32-g++`)
-- At least 2 CPU cores and 2 GB RAM for the build
 
 ## Install
 
@@ -30,14 +29,6 @@ cd adaptix-graph-c2
 ```
 
 The script does everything: patches the source, builds the listener plugin, rebuilds the server, compiles beacon objects, and restarts the service.
-
-If Adaptix runs in a container, clone and run the script directly inside it:
-
-```bash
-git clone https://github.com/stillbigjosh/adaptix-graph-c2.git /opt/adaptix-graph-c2
-cd /opt/adaptix-graph-c2
-./scripts/install.sh /opt/AdaptixC2
-```
 
 ## After Install
 
