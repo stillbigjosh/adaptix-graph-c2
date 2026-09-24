@@ -1,0 +1,139 @@
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" role="img" style="background: transparent;">
+  <title>Adaptix Graph C2 Cloud Dead-Drop Topology</title>
+  <desc>Network topology showing how beacons relay C2 traffic through Azure Blob Storage or OneDrive instead of connecting directly to the operator's server.</desc>
+
+  <defs>
+    <marker id="arrow-amber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#d8a657" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrow-teal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#8ec07c" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- ══ BACKGROUND ZONES ══ -->
+
+  <!-- Target Network zone -->
+  <rect x="20" y="60" width="230" height="440" rx="12" fill="#3c3836" opacity="0.5" stroke="#504945" stroke-width="1"/>
+  <text x="135" y="88" text-anchor="middle" fill="#928374" font-family="monospace" font-size="10" letter-spacing="1.2">TARGET NETWORK</text>
+
+  <!-- Cloud zone -->
+  <rect x="290" y="60" width="320" height="440" rx="12" fill="#282828" opacity="0.4" stroke="#504945" stroke-width="1"/>
+  <text x="450" y="88" text-anchor="middle" fill="#928374" font-family="monospace" font-size="10" letter-spacing="1.2">MICROSOFT AZURE / M365</text>
+
+  <!-- Operator zone -->
+  <rect x="650" y="60" width="230" height="440" rx="12" fill="#3c3836" opacity="0.5" stroke="#504945" stroke-width="1"/>
+  <text x="765" y="88" text-anchor="middle" fill="#928374" font-family="monospace" font-size="10" letter-spacing="1.2">OPERATOR (NO PUBLIC IP)</text>
+
+  <!-- ══ AZURE BLOB STORAGE ══ -->
+  <rect x="340" y="130" width="220" height="100" rx="10" fill="#282828" stroke="#d8a657" stroke-width="1.5"/>
+  <text x="450" y="158" text-anchor="middle" fill="#ebdbb2" font-family="-apple-system, sans-serif" font-size="14" font-weight="700">Azure Blob Storage</text>
+  <text x="450" y="178" text-anchor="middle" fill="#bdae93" font-family="monospace" font-size="11">{account}.blob.core.windows.net</text>
+
+  <!-- Blob files -->
+  <rect x="356" y="192" width="80" height="24" rx="4" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="396" y="208" text-anchor="middle" fill="#d8a657" font-family="monospace" font-size="10">c_{n}.dat</text>
+  <rect x="464" y="192" width="80" height="24" rx="4" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="504" y="208" text-anchor="middle" fill="#8ec07c" font-family="monospace" font-size="10">r_{n}.dat</text>
+
+  <!-- ══ ONEDRIVE ══ -->
+  <rect x="340" y="290" width="220" height="100" rx="10" fill="#282828" stroke="#83a598" stroke-width="1.5"/>
+  <text x="450" y="318" text-anchor="middle" fill="#ebdbb2" font-family="-apple-system, sans-serif" font-size="14" font-weight="700">OneDrive</text>
+  <text x="450" y="338" text-anchor="middle" fill="#bdae93" font-family="monospace" font-size="11">graph.microsoft.com</text>
+
+  <!-- OneDrive files -->
+  <rect x="356" y="352" width="80" height="24" rx="4" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="396" y="368" text-anchor="middle" fill="#d8a657" font-family="monospace" font-size="10">c_{n}.dat</text>
+  <rect x="464" y="352" width="80" height="24" rx="4" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="504" y="368" text-anchor="middle" fill="#8ec07c" font-family="monospace" font-size="10">r_{n}.dat</text>
+
+  <!-- "OR" divider -->
+  <line x1="370" y1="255" x2="530" y2="255" stroke="#504945" stroke-width="1" stroke-dasharray="4,4"/>
+  <rect x="430" y="245" width="40" height="20" rx="4" fill="#1d2021"/>
+  <text x="450" y="259" text-anchor="middle" fill="#928374" font-family="monospace" font-size="11" font-weight="600">OR</text>
+
+  <!-- ══ BEACON (Target side) ══ -->
+  <rect x="55" y="160" width="160" height="70" rx="10" fill="#282828" stroke="#fb4934" stroke-width="1.5"/>
+  <text x="135" y="188" text-anchor="middle" fill="#ebdbb2" font-family="-apple-system, sans-serif" font-size="13" font-weight="700">Beacon</text>
+  <text x="135" y="206" text-anchor="middle" fill="#928374" font-family="monospace" font-size="10">ConnectorGraph</text>
+
+  <!-- Compromised host -->
+  <rect x="70" y="280" width="130" height="50" rx="8" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="135" y="302" text-anchor="middle" fill="#bdae93" font-family="-apple-system, sans-serif" font-size="11">Windows Target</text>
+  <text x="135" y="318" text-anchor="middle" fill="#928374" font-family="monospace" font-size="9">10.10.14.x</text>
+
+  <!-- Beacon to host line -->
+  <line x1="135" y1="230" x2="135" y2="280" stroke="#504945" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- ══ LISTENER (Operator side) ══ -->
+  <rect x="685" y="160" width="160" height="70" rx="10" fill="#282828" stroke="#8ec07c" stroke-width="1.5"/>
+  <text x="765" y="188" text-anchor="middle" fill="#ebdbb2" font-family="-apple-system, sans-serif" font-size="13" font-weight="700">Graph Listener</text>
+  <text x="765" y="206" text-anchor="middle" fill="#928374" font-family="monospace" font-size="10">external (graph)</text>
+
+  <!-- Adaptix Server -->
+  <rect x="700" y="280" width="130" height="50" rx="8" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="765" y="302" text-anchor="middle" fill="#bdae93" font-family="-apple-system, sans-serif" font-size="11">Adaptix Server</text>
+  <text x="765" y="318" text-anchor="middle" fill="#928374" font-family="monospace" font-size="9">No public IP needed</text>
+
+  <!-- Listener to server line -->
+  <line x1="765" y1="230" x2="765" y2="280" stroke="#504945" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Operator workstation -->
+  <rect x="700" y="380" width="130" height="50" rx="8" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="765" y="402" text-anchor="middle" fill="#bdae93" font-family="-apple-system, sans-serif" font-size="11">Adaptix Client</text>
+  <text x="765" y="418" text-anchor="middle" fill="#928374" font-family="monospace" font-size="9">Operator GUI</text>
+
+  <!-- Server to client line -->
+  <line x1="765" y1="330" x2="765" y2="380" stroke="#504945" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- ══ DATA FLOW ARROWS ══ -->
+
+  <!-- Beacon → Blob (upload checkin) -->
+  <path d="M215,175 L335,175" fill="none" stroke="#d8a657" stroke-width="2" marker-end="url(#arrow-amber)"/>
+  <text x="275" y="167" text-anchor="middle" fill="#d8a657" font-family="monospace" font-size="9">PUT c_{n}.dat</text>
+
+  <!-- Blob → Beacon (download response) -->
+  <path d="M335,205 L215,205" fill="none" stroke="#8ec07c" stroke-width="2" marker-end="url(#arrow-teal)"/>
+  <text x="275" y="222" text-anchor="middle" fill="#8ec07c" font-family="monospace" font-size="9">GET r_{n}.dat</text>
+
+  <!-- Blob → Listener (download checkin) -->
+  <path d="M565,175 L680,175" fill="none" stroke="#d8a657" stroke-width="2" marker-end="url(#arrow-amber)"/>
+  <text x="622" y="167" text-anchor="middle" fill="#d8a657" font-family="monospace" font-size="9">GET c_{n}.dat</text>
+
+  <!-- Listener → Blob (upload response) -->
+  <path d="M680,205 L565,205" fill="none" stroke="#8ec07c" stroke-width="2" marker-end="url(#arrow-teal)"/>
+  <text x="622" y="222" text-anchor="middle" fill="#8ec07c" font-family="monospace" font-size="9">PUT r_{n}.dat</text>
+
+  <!-- Beacon → OneDrive (upload checkin) -->
+  <path d="M215,310 C280,310 280,335 335,335" fill="none" stroke="#d8a657" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrow-amber)"/>
+
+  <!-- OneDrive → Beacon (download response) -->
+  <path d="M335,365 C280,365 280,340 215,340" fill="none" stroke="#8ec07c" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrow-teal)"/>
+
+  <!-- OneDrive → Listener -->
+  <path d="M565,335 C630,335 630,310 680,310" fill="none" stroke="#d8a657" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrow-amber)"/>
+
+  <!-- Listener → OneDrive -->
+  <path d="M680,340 C630,340 630,365 565,365" fill="none" stroke="#8ec07c" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrow-teal)"/>
+
+  <!-- ══ PROTOCOL LABELS ══ -->
+  <rect x="225" y="118" width="100" height="22" rx="4" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="275" y="133" text-anchor="middle" fill="#bdae93" font-family="monospace" font-size="9">HTTPS :443</text>
+
+  <rect x="575" y="118" width="100" height="22" rx="4" fill="#3c3836" stroke="#504945" stroke-width="1"/>
+  <text x="625" y="133" text-anchor="middle" fill="#bdae93" font-family="monospace" font-size="9">HTTPS :443</text>
+
+  <!-- ══ LEGEND ══ -->
+  <rect x="310" y="440" width="280" height="50" rx="8" fill="#282828" stroke="#504945" stroke-width="1"/>
+  <line x1="330" y1="462" x2="365" y2="462" stroke="#d8a657" stroke-width="2"/>
+  <text x="372" y="466" fill="#bdae93" font-family="monospace" font-size="10">Checkin (beacon → cloud)</text>
+  <line x1="330" y1="478" x2="365" y2="478" stroke="#8ec07c" stroke-width="2"/>
+  <text x="372" y="482" fill="#bdae93" font-family="monospace" font-size="10">Tasking (cloud → beacon)</text>
+
+  <!-- ══ KEY CALLOUT ══ -->
+  <rect x="55" y="380" width="160" height="70" rx="8" fill="#282828" stroke="#d8a657" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="135" y="402" text-anchor="middle" fill="#d8a657" font-family="monospace" font-size="10" font-weight="600">NO DIRECT LINK</text>
+  <text x="135" y="418" text-anchor="middle" fill="#928374" font-family="monospace" font-size="9">Beacon never contacts</text>
+  <text x="135" y="432" text-anchor="middle" fill="#928374" font-family="monospace" font-size="9">the operator's server</text>
+
+</svg>
