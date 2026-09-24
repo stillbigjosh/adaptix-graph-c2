@@ -1,5 +1,7 @@
 # Adaptix Graph C2
 
+![Cloud dead-drop C2 topology](topology.svg)
+
 Cloud dead-drop C2 channel plugin for [Adaptix C2](https://github.com/Adaptix-Framework/AdaptixC2) v1.2.
 
 Beacons communicate through Azure cloud storage instead of direct HTTP callbacks. All traffic is outbound HTTPS to Microsoft endpoints. No public IP or inbound ports needed.
@@ -9,8 +11,6 @@ Supports two storage backends:
 - **OneDrive** (Microsoft Graph API)
 
 **For authorized red team and penetration testing use only.**
-
-![Cloud dead-drop C2 topology](topology.svg)
 
 For a full walkthrough with screenshots, see the [deployment guide](https://stillbigjosh.github.io/writeup.html?file=writeups/adaptix-graph-c2.md).
 
