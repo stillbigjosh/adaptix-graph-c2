@@ -4,7 +4,7 @@
 
 Cloud dead-drop C2 channel plugin for [Adaptix C2](https://github.com/Adaptix-Framework/AdaptixC2) v1.2.
 
-Beacons communicate through Azure cloud storage instead of direct HTTP callbacks. All traffic is outbound HTTPS to Microsoft endpoints. No public IP or inbound ports needed.
+Beacons communicate through Azure cloud storage or OneDrive instead of direct HTTP callbacks. All traffic is outbound HTTPS to Microsoft endpoints. No public IP or inbound ports needed.
 
 Supports two storage backends:
 - **Azure Blob Storage** (recommended)
@@ -57,7 +57,6 @@ The script does everything: patches the source, builds the listener plugin, rebu
 | `agent_kharon` build error | Pre-existing Adaptix issue, does not affect this plugin |
 | 403 on blob ops | SAS must use version `2020-10-02` without `signedEncryptionScope` |
 | No callback | Target cannot reach `{account}.blob.core.windows.net:443` |
-| Build OOM / slow | Use at least 2 cores, 2 GB RAM. LXC: `pct set <id> -cores 4 -memory 2048` |
 
 ## Project Structure
 
