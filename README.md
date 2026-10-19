@@ -58,11 +58,3 @@ The script does everything: patches the source, builds the listener plugin, rebu
 | 403 on blob ops | SAS must use version `2020-10-02` without `signedEncryptionScope` |
 | No callback | Target cannot reach `{account}.blob.core.windows.net:443` |
 
-## Project Structure
-
-```
-listener/       Go listener plugin (.so)
-beacon/         C++ connector (ConnectorGraph)
-patches/        8 additive patches for the beacon agent
-scripts/        install.sh, build_objects.sh, uninstall.sh
-```
